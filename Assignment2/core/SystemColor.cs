@@ -4,7 +4,9 @@ using Windows.UI.ViewManagement;
 namespace Assignment2.core {
 
 	internal class SystemColor {
-		public static event OnColorChanged colorChanged;
+
+		public static event OnColorChanged onColorChanged;
+
 		private static readonly UISettings settings = new();
 		private static Windows.UI.Color currentColor;
 
@@ -18,7 +20,7 @@ namespace Assignment2.core {
 			if (currentColor != newColor) {
 				Log.d($"Color changed from {currentColor} to {newColor}");
 				currentColor = newColor;
-				colorChanged.Invoke(UIColorToColor(currentColor));
+				onColorChanged.Invoke(UIColorToColor(currentColor));
 			}
 		}
 
