@@ -7,7 +7,7 @@ namespace Assignment2.gui {
 		public BaseForm() {
 			InitializeComponent();
 			ConfigureColor();
-			SystemColor.colorChanged += ColorChanged;
+			SystemColor.ColorChanged += ColorChanged;
 		}
 
 		private void ConfigureColor() {
