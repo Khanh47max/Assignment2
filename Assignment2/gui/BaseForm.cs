@@ -1,9 +1,7 @@
 ﻿using Assignment2.core;
 
 namespace Assignment2.gui {
-
 	internal class BaseForm : Form {
-
 		public BaseForm() {
 			InitializeComponent();
 			ConfigureColor();
