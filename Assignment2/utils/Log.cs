@@ -10,7 +10,7 @@ namespace Assignment2.utils {
 			if (message != null) {
 				smessage += message.ToString();
 			}
-			Print("SYSTEM", smessage, LogLevel.SYSTEM);
+			Print(null, smessage, LogLevel.SYSTEM);
 		}
 
 		public static void d(object message) {
@@ -18,13 +18,7 @@ namespace Assignment2.utils {
 			StackFrame? frame = stackTrace.GetFrame(1);
 			if (frame == null) { return; }
 			MethodBase? callerR = frame.GetMethod();
-			if (callerR is MethodBase caller) {
-				if (caller.ReflectedType is Type type) {
-					Print($"{type.Name}.{caller.Name}()", message, LogLevel.DEBUG);
-					return;
-				}
-			}
-			Print("Unknown", message, LogLevel.DEBUG);
+			Print(callerR, message, LogLevel.DEBUG);
 		}
 
 		public static void i(object message) {
@@ -32,13 +26,7 @@ namespace Assignment2.utils {
 			StackFrame? frame = stackTrace.GetFrame(1);
 			if (frame == null) { return; }
 			MethodBase? callerR = frame.GetMethod();
-			if (callerR is MethodBase caller) {
-				if (caller.ReflectedType is Type type) {
-					Print($"{type.Name}.{caller.Name}()", message, LogLevel.INFO);
-					return;
-				}
-			}
-			Print("Unknown", message, LogLevel.INFO);
+			Print(callerR, message, LogLevel.INFO);
 		}
 
 		public static void w(object message) {
@@ -46,13 +34,7 @@ namespace Assignment2.utils {
 			StackFrame? frame = stackTrace.GetFrame(1);
 			if (frame == null) { return; }
 			MethodBase? callerR = frame.GetMethod();
-			if (callerR is MethodBase caller) {
-				if (caller.ReflectedType is Type type) {
-					Print($"{type.Name}.{caller.Name}()", message, LogLevel.WARN);
-					return;
-				}
-			}
-			Print("Unknown", message, LogLevel.WARN);
+			Print(callerR, message, LogLevel.WARN);
 		}
 
 		public static void e(object message) {
@@ -60,13 +42,7 @@ namespace Assignment2.utils {
 			StackFrame? frame = stackTrace.GetFrame(1);
 			if (frame == null) { return; }
 			MethodBase? callerR = frame.GetMethod();
-			if (callerR is MethodBase caller) {
-				if (caller.ReflectedType is Type type) {
-					Print($"{type.Name}.{caller.Name}()", message, LogLevel.ERROR);
-					return;
-				}
-			}
-			Print("Unknown", message, LogLevel.ERROR);
+			Print(callerR, message, LogLevel.ERROR);
 		}
 
 		public static void e(Exception ex) {
@@ -74,19 +50,19 @@ namespace Assignment2.utils {
 			StackFrame? frame = stackTrace.GetFrame(1);
 			if (frame == null) { return; }
 			MethodBase? callerR = frame.GetMethod();
-			if (callerR is MethodBase caller) {
-				if (caller.ReflectedType is Type type) {
-					Print($"{type.Name}.{caller.Name}()", ex.Message, LogLevel.ERROR);
-					return;
-				}
-			}
-			Print("Unknown", ex.Message, LogLevel.ERROR);
+			Print(callerR, ex.Message, LogLevel.ERROR);
 			if (ex.InnerException != null) {
 				e(ex.InnerException);
 			}
 		}
 
-		private static void Print(string tag, object message, LogLevel level) {
+		private static void Print(MethodBase? callerR, object message, LogLevel level) {
+			string tag = "Unknown";
+			if (level == LogLevel.SYSTEM) {
+				tag = "SYSTEM";
+			} else if (callerR is MethodBase caller && caller.ReflectedType is Type type) {
+				tag = $"{(IsAnonymous(caller) ? "<lambda>" : $"{type.Name}.{caller.Name}({string.Join(", ", caller.GetParameters().Select(param => param.ParameterType.Name))})")}";
+			}
 			switch (level) {
 				case LogLevel.DEBUG:
 					Console.ForegroundColor = ConsoleColor.Blue;
@@ -109,18 +85,24 @@ namespace Assignment2.utils {
 					break;
 			}
 
-			Console.WriteLine(formatString(tag, message, level));
+			Console.WriteLine(FormatString(tag, message, level));
 			Console.ForegroundColor = ConsoleColor.DarkGray;
 			Console.WriteLine(new string('-', Console.BufferWidth));
 			Console.ResetColor();
 		}
 
-		private static string formatString(string tag, object message, LogLevel level) {
+		private static string FormatString(string tag, object message, LogLevel level) {
 			DateTime time = DateTime.Now;
 			string header = $"| [{time.Day:00}-{time.Month:00}-{time.Year:0000} {time.Hour:00}:{time.Minute:00}:{time.Second:00}.{time.Millisecond:000}] [{level}] {tag} |";
 			string sep = ($"+{new string('-', header.Length - 2)}+");
 			string fmessage = $"{message}";
 			return $"{sep}\n{header}\n{sep}\n{fmessage}";
+		}
+
+		public static bool IsAnonymous(MethodBase method) {
+			Console.WriteLine(method.MemberType);
+			char[] invalidChars = ['<', '>'];
+			return method.Name.Any(invalidChars.Contains);
 		}
 
 		private enum LogLevel {
