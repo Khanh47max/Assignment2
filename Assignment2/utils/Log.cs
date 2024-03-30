@@ -105,12 +105,12 @@ namespace Assignment2.utils {
 					break;
 
 				case LogLevel.SYSTEM:
-					Console.ForegroundColor = ConsoleColor.DarkGray;
+					Console.ForegroundColor = ConsoleColor.Gray;
 					break;
 			}
 
 			Console.WriteLine(formatString(tag, message, level));
-			Console.ForegroundColor = ConsoleColor.Gray;
+			Console.ForegroundColor = ConsoleColor.DarkGray;
 			Console.WriteLine(new string('-', Console.BufferWidth));
 			Console.ResetColor();
 		}
@@ -129,14 +129,6 @@ namespace Assignment2.utils {
 			WARN,
 			ERROR,
 			SYSTEM
-		}
-	}
-
-	[AttributeUsage(AttributeTargets.Method)]
-	internal class LogAttribute : Attribute {
-
-		public void AfterMethodCall() {
-			Log.d("Method called");
 		}
 	}
 }

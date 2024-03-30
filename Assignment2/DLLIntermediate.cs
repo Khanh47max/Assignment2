@@ -1,9 +1,9 @@
-﻿using Assignment2.utils;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace Assignment2 {
 
-	internal partial class DLLIntermediate {
+	[Obsolete("Currently no use")]
+	internal static partial class DLLIntermediate {
 		public static readonly int SW_HIDE = 0;
 		public static readonly int SW_NORMAL = 1;
 		public static readonly int SW_MAXIMIZE = 3;
@@ -11,11 +11,9 @@ namespace Assignment2 {
 		public static readonly int SW_MINIMIZE = 6;
 		public static readonly int SW_RESTORE = 9;
 
-		[Log]
 		[LibraryImport("kernel32.dll")]
 		public static partial IntPtr GetConsoleWindow();
 
-		[Log]
 		[LibraryImport("user32.dll")]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		public static partial bool ShowWindow(IntPtr hwnd, int nCmdShow);
