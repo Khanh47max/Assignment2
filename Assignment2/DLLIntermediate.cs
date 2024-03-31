@@ -2,7 +2,6 @@
 
 namespace Assignment2 {
 
-	[Obsolete("Currently no use")]
 	internal static partial class DLLIntermediate {
 		public static readonly int SW_HIDE = 0;
 		public static readonly int SW_NORMAL = 1;

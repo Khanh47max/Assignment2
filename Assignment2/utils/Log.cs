@@ -61,7 +61,7 @@ namespace Assignment2.utils {
 			if (level == LogLevel.SYSTEM) {
 				tag = "SYSTEM";
 			} else if (callerR is MethodBase caller && caller.ReflectedType is Type type) {
-				tag = $"{(IsAnonymous(caller) ? "<lambda>" : $"{type.Name}.{caller.Name}({string.Join(", ", caller.GetParameters().Select(param => param.ParameterType.Name))})")}";
+				tag = $"{(IsAnonymous(caller) ? $"{type.Name}.<lambda>()" : $"{type.Name}.{caller.Name}({string.Join(", ", caller.GetParameters().Select(param => param.ParameterType.Name))})")}";
 			}
 			switch (level) {
 				case LogLevel.DEBUG:
@@ -100,7 +100,6 @@ namespace Assignment2.utils {
 		}
 
 		public static bool IsAnonymous(MethodBase method) {
-			Console.WriteLine(method.MemberType);
 			char[] invalidChars = ['<', '>'];
 			return method.Name.Any(invalidChars.Contains);
 		}

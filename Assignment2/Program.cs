@@ -1,20 +1,21 @@
 ﻿using Assignment2.gui;
-using Assignment2.utils;
 
 namespace Assignment2 {
 
-	internal class Program : BaseForm {
+	internal class Program {
 
+		[STAThread]
 		public static void Main(string[] args) {
-			Program program = new();
-			program.A();
-			program.Show();
+			Configure();
+			ShowBaseForm();
 		}
 
-		public void A() {
-			OnThemeChange += () => {
-				Log.i("S");
-			};
+		private static void ShowBaseForm() {
+			new LoginForm().Show();
+		}
+
+		private static void Configure() {
+			// Add configuration code here
 		}
 	}
 }
