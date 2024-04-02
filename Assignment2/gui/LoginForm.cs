@@ -16,6 +16,7 @@ namespace Assignment2.gui {
 			username = new TextBox();
 			label_password = new Label();
 			password = new TextBox();
+			exit = new Button();
 			status.SuspendLayout();
 			loginInfo.SuspendLayout();
 			SuspendLayout();
@@ -70,6 +71,7 @@ namespace Assignment2.gui {
 			label_username.Location = new Point(3, 0);
 			label_username.Name = "label_username";
 			label_username.Size = new Size(89, 15);
+			label_username.TabIndex = 0;
 			label_username.Text = "Username";
 			//
 			// username
@@ -92,6 +94,7 @@ namespace Assignment2.gui {
 			label_password.Location = new Point(3, 29);
 			label_password.Name = "label_password";
 			label_password.Size = new Size(89, 15);
+			label_password.TabIndex = 1;
 			label_password.Text = "Password";
 			//
 			// password
@@ -107,18 +110,30 @@ namespace Assignment2.gui {
 					login.PerformClick();
 				}
 			};
+			password.UseSystemPasswordChar = true;
+			//
+			// exit
+			//
+			exit.Location = new Point(329, 125);
+			exit.Name = "exit";
+			exit.Size = new Size(75, 23);
+			exit.TabIndex = 4;
+			exit.Text = "Exit";
+			exit.UseVisualStyleBackColor = true;
+			exit.Click += (o, e) => Close();
 			//
 			// LoginForm
 			//
-			TopMost = true;
 			ClientSize = new Size(497, 173);
 			Controls.Add(loginInfo);
 			Controls.Add(login);
+			Controls.Add(exit);
 			Controls.Add(status);
-			FormBorderStyle = FormBorderStyle.FixedSingle;
+			FormBorderStyle = FormBorderStyle.None;
 			MaximizeBox = false;
 			Name = "LoginForm";
 			Controls.SetChildIndex(status, 0);
+			Controls.SetChildIndex(exit, 0);
 			Controls.SetChildIndex(login, 0);
 			Controls.SetChildIndex(loginInfo, 0);
 			status.ResumeLayout(false);
@@ -134,8 +149,10 @@ namespace Assignment2.gui {
 			Account account = new(username.Text, password.Text);
 			login.Enabled = false;
 			if (account.IsValid()) {
+				core.ProgramEnvironment.CurrentAccount = account;
 				information.Text = "Login successful";
-				Close();
+				Dispose();
+				new MainForm().Show();
 			} else {
 				login.Enabled = true;
 				information.Text = "Invalid username or password";
@@ -149,6 +166,7 @@ namespace Assignment2.gui {
 		private Label label_username;
 		private Label label_password;
 		private TextBox password;
+		private Button exit;
 		private Button login;
 	}
 }

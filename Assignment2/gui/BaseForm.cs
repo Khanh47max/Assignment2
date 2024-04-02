@@ -31,7 +31,7 @@ namespace Assignment2.gui {
 
 		public new void ShowDialog(IWin32Window? owner) {
 			Log.i($"GUI {GetType().FullName} showing");
-			base.ShowDialog();
+			base.ShowDialog(owner);
 		}
 
 		private void InitializeComponent() {
@@ -79,11 +79,12 @@ namespace Assignment2.gui {
 			//
 			// BaseForm
 			//
+			TopMost = true;
 			ClientSize = new Size(284, 261);
 			Controls.Add(menu);
 			MainMenuStrip = menu;
 			Name = "BaseForm";
-			StartPosition = FormStartPosition.CenterScreen;
+			StartPosition = FormStartPosition.CenterParent;
 			menu.ResumeLayout(false);
 			menu.PerformLayout();
 			ResumeLayout(false);
@@ -91,12 +92,9 @@ namespace Assignment2.gui {
 		}
 
 		private void ConfigureEvent() {
-			FormClosing += (o, e) => {
-				if (MessageBox.Show("Do you want to close?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) {
-					e.Cancel = true;
-				} else {
-					Log.i($"GUI {GetType().FullName} closing");
-				}
+			FormClosed += (o, e) => {
+				Log.i($"GUI {GetType().FullName} closed");
+				Dispose();
 			};
 			console_options_menu.Click += (o, e) => {
 				int show = DLLIntermediate.SW_RESTORE;

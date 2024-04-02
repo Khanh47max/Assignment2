@@ -93,7 +93,7 @@ namespace Assignment2.utils {
 
 		private static string FormatString(string tag, object message, LogLevel level) {
 			DateTime time = DateTime.Now;
-			string header = $"| [{time.Day:00}-{time.Month:00}-{time.Year:0000} {time.Hour:00}:{time.Minute:00}:{time.Second:00}.{time.Millisecond:000}] [{level}] {tag} |";
+			string header = $"| [{time:yyyy:MM:dd HH:mm:ss.FFF}] [{level}] {tag} |";
 			string sep = ($"+{new string('-', header.Length - 2)}+");
 			string fmessage = $"{message}";
 			return $"{sep}\n{header}\n{sep}\n{fmessage}";

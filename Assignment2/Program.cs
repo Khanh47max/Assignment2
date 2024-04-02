@@ -1,4 +1,6 @@
-﻿using Assignment2.gui;
+﻿using Assignment2.core;
+using Assignment2.data;
+using Assignment2.gui;
 
 namespace Assignment2 {
 
@@ -15,7 +17,8 @@ namespace Assignment2 {
 		}
 
 		private static void Configure() {
-			// Add configuration code here
+			ProgramEnvironment.CustomersDatabase.Add(new Customer("John", CustomerType.Household, 0, 1));
+			ProgramEnvironment.CustomersDatabase.Add(new Customer("Alex"));
 		}
 	}
 }
