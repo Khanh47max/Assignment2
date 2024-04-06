@@ -23,7 +23,7 @@ namespace Assignment2.gui {
 			//
 			// login
 			//
-			login.Location = new Point(410, 123);
+			login.Location = new Point(410, 125);
 			login.Name = "login";
 			login.Size = new Size(75, 23);
 			login.TabIndex = 2;
@@ -129,7 +129,7 @@ namespace Assignment2.gui {
 			Controls.Add(login);
 			Controls.Add(exit);
 			Controls.Add(status);
-			FormBorderStyle = FormBorderStyle.None;
+			FormBorderStyle = FormBorderStyle.FixedSingle;
 			MaximizeBox = false;
 			Name = "LoginForm";
 			Controls.SetChildIndex(status, 0);
@@ -152,7 +152,7 @@ namespace Assignment2.gui {
 				core.ProgramEnvironment.CurrentAccount = account;
 				information.Text = "Login successful";
 				Dispose();
-				new MainForm().Show();
+				new MainForm().ShowDialog();
 			} else {
 				login.Enabled = true;
 				information.Text = "Invalid username or password";

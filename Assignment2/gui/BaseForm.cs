@@ -1,9 +1,12 @@
-﻿using Assignment2.utils;
+﻿using Assignment2.core;
+using Assignment2.utils;
 
 namespace Assignment2.gui {
 
 	internal partial class BaseForm : Form {
-		private MenuStrip menu;
+		private readonly SystemColor _default = new(Windows.UI.ViewManagement.UIColorType.AccentLight3);
+		protected readonly SystemColor _systemColor;
+		protected MenuStrip menu;
 		private ToolStripMenuItem options_menu;
 		private ToolStripMenuItem about_menu;
 		private ToolStripMenuItem console_options_menu;
@@ -11,18 +14,11 @@ namespace Assignment2.gui {
 		public BaseForm() : this(null) {
 		}
 
-		public BaseForm(string? title) {
+		public BaseForm(string? title, SystemColor? systemColor = default) {
+			_systemColor = systemColor ?? _default;
 			InitializeComponent();
 			ConfigureEvent();
 			Text = title ?? GetType().Name;
-		}
-
-		public new void Show() {
-			Show(null);
-		}
-
-		public new void Show(IWin32Window? owner) {
-			ShowDialog(owner);
 		}
 
 		public new void ShowDialog() {
@@ -92,6 +88,9 @@ namespace Assignment2.gui {
 		}
 
 		private void ConfigureEvent() {
+			BackColor = _systemColor.GetColor();
+			_systemColor.OnColorChanged += (c) => BackColor = c;
+
 			FormClosed += (o, e) => {
 				Log.i($"GUI {GetType().FullName} closed");
 				Dispose();

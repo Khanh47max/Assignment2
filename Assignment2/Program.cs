@@ -13,12 +13,12 @@ namespace Assignment2 {
 		}
 
 		private static void ShowBaseForm() {
-			new LoginForm().Show();
+			new LoginForm().ShowDialog();
 		}
 
 		private static void Configure() {
-			ProgramEnvironment.CustomersDatabase.Add(new Customer("John", CustomerType.Household, 0, 1));
-			ProgramEnvironment.CustomersDatabase.Add(new Customer("Alex"));
+			ProgramEnvironment.ActiveAccounts.Add(new Account("admin", "admin"));
+			ProgramEnvironment.ActiveAccounts.Add(new Account("huymaster", ""));
 		}
 	}
 }

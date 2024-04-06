@@ -1,6 +1,5 @@
 ﻿using Assignment2.data;
 using Assignment2.utils;
-using System.Collections.Immutable;
 
 namespace Assignment2.core {
 
@@ -14,8 +13,8 @@ namespace Assignment2.core {
 
 		public static event AccountLogout OnAccountLogout = () => Log.i("Logged out");
 
-		// Varialbles
-		public static readonly ImmutableList<Account> ActiveAccounts = [Account.GetAccount("Admin", "admin"), Account.GetAccount("HuyMaster", "")];
+		// Variables
+		public static readonly Database<Account, MinimalAccount> ActiveAccounts = new();
 
 		private static Account? _currentAccount;
 
@@ -23,12 +22,12 @@ namespace Assignment2.core {
 			get => _currentAccount;
 			set {
 				if (value is null) OnAccountLogout.Invoke();
-				else OnAccountLogin.Invoke(value.Value.Username);
+				else OnAccountLogin.Invoke(value.Username);
 				_currentAccount = value;
 			}
 		}
 
-		public static readonly Database<Customer> CustomersDatabase = new();
+		public static readonly Database<Customer, MinimalCustomer> CustomersDatabase = new();
 
 		//Delegates
 		public delegate void AccountLogin(string username);
@@ -39,7 +38,7 @@ namespace Assignment2.core {
 	internal static class AccountValidable {
 
 		public static bool IsValid(this Account account) {
-			return ProgramEnvironment.ActiveAccounts.Contains(account);
+			return ProgramEnvironment.ActiveAccounts.GetValues().Contains(account);
 		}
 	}
 }
