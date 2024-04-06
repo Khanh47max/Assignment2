@@ -43,9 +43,9 @@ namespace Assignment2.gui {
 			statusMenu.SuspendLayout();
 			panel.SuspendLayout();
 			SuspendLayout();
-			// 
+			//
 			// name_label
-			// 
+			//
 			name_label.AutoSize = true;
 			name_label.Font = new Font("Segoe UI", 9.75F);
 			name_label.Location = new Point(11, 18);
@@ -54,9 +54,9 @@ namespace Assignment2.gui {
 			name_label.TabIndex = 2;
 			name_label.Text = "Name:";
 			name_label.TextAlign = ContentAlignment.MiddleLeft;
-			// 
+			//
 			// typeLabel
-			// 
+			//
 			typeLabel.AutoSize = true;
 			typeLabel.Font = new Font("Segoe UI", 9.75F);
 			typeLabel.Location = new Point(11, 47);
@@ -65,9 +65,9 @@ namespace Assignment2.gui {
 			typeLabel.TabIndex = 4;
 			typeLabel.Text = "Type:";
 			typeLabel.TextAlign = ContentAlignment.MiddleLeft;
-			// 
+			//
 			// addTimeLabel
-			// 
+			//
 			addTimeLabel.AutoSize = true;
 			addTimeLabel.Font = new Font("Segoe UI", 9.75F);
 			addTimeLabel.Location = new Point(10, 76);
@@ -76,9 +76,9 @@ namespace Assignment2.gui {
 			addTimeLabel.TabIndex = 6;
 			addTimeLabel.Text = "Time created";
 			addTimeLabel.TextAlign = ContentAlignment.MiddleLeft;
-			// 
+			//
 			// lastMonthLabel
-			// 
+			//
 			lastMonthLabel.AutoSize = true;
 			lastMonthLabel.Font = new Font("Segoe UI", 9.75F);
 			lastMonthLabel.Location = new Point(11, 123);
@@ -87,9 +87,9 @@ namespace Assignment2.gui {
 			lastMonthLabel.TabIndex = 8;
 			lastMonthLabel.Text = "Last month";
 			lastMonthLabel.TextAlign = ContentAlignment.MiddleLeft;
-			// 
+			//
 			// thisMonthLabel
-			// 
+			//
 			thisMonthLabel.AutoSize = true;
 			thisMonthLabel.Font = new Font("Segoe UI", 9.75F);
 			thisMonthLabel.Location = new Point(11, 152);
@@ -98,9 +98,9 @@ namespace Assignment2.gui {
 			thisMonthLabel.TabIndex = 10;
 			thisMonthLabel.Text = "This month";
 			thisMonthLabel.TextAlign = ContentAlignment.MiddleLeft;
-			// 
+			//
 			// totalUsageLabel
-			// 
+			//
 			totalUsageLabel.AutoSize = true;
 			totalUsageLabel.Font = new Font("Segoe UI", 9.75F);
 			totalUsageLabel.Location = new Point(11, 181);
@@ -109,9 +109,9 @@ namespace Assignment2.gui {
 			totalUsageLabel.TabIndex = 12;
 			totalUsageLabel.Text = "Total";
 			totalUsageLabel.TextAlign = ContentAlignment.MiddleLeft;
-			// 
+			//
 			// priceLabel
-			// 
+			//
 			priceLabel.AutoSize = true;
 			priceLabel.Font = new Font("Segoe UI", 9.75F);
 			priceLabel.Location = new Point(11, 228);
@@ -120,9 +120,9 @@ namespace Assignment2.gui {
 			priceLabel.TabIndex = 14;
 			priceLabel.Text = "Price";
 			priceLabel.TextAlign = ContentAlignment.MiddleLeft;
-			// 
+			//
 			// vatLabel
-			// 
+			//
 			vatLabel.AutoSize = true;
 			vatLabel.Font = new Font("Segoe UI", 9.75F);
 			vatLabel.Location = new Point(11, 257);
@@ -131,9 +131,9 @@ namespace Assignment2.gui {
 			vatLabel.TabIndex = 16;
 			vatLabel.Text = "VAT";
 			vatLabel.TextAlign = ContentAlignment.MiddleLeft;
-			// 
+			//
 			// totalPriceLabel
-			// 
+			//
 			totalPriceLabel.AutoSize = true;
 			totalPriceLabel.Font = new Font("Segoe UI", 9.75F);
 			totalPriceLabel.Location = new Point(11, 286);
@@ -142,90 +142,90 @@ namespace Assignment2.gui {
 			totalPriceLabel.TabIndex = 19;
 			totalPriceLabel.Text = "Total";
 			totalPriceLabel.TextAlign = ContentAlignment.MiddleLeft;
-			// 
+			//
 			// name
-			// 
+			//
 			name.BorderStyle = BorderStyle.FixedSingle;
 			name.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
 			name.Location = new Point(93, 15);
 			name.Name = "name";
 			name.Size = new Size(292, 23);
 			name.TabIndex = 3;
-			// 
+			//
 			// type
-			// 
+			//
 			type.BorderStyle = BorderStyle.FixedSingle;
 			type.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
 			type.Location = new Point(93, 44);
 			type.Name = "type";
 			type.Size = new Size(292, 23);
 			type.TabIndex = 5;
-			// 
+			//
 			// addTime
-			// 
+			//
 			addTime.BorderStyle = BorderStyle.FixedSingle;
 			addTime.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
 			addTime.Location = new Point(93, 73);
 			addTime.Name = "addTime";
 			addTime.Size = new Size(291, 23);
 			addTime.TabIndex = 7;
-			// 
+			//
 			// lastMonth
-			// 
+			//
 			lastMonth.BorderStyle = BorderStyle.FixedSingle;
 			lastMonth.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
 			lastMonth.Location = new Point(93, 120);
 			lastMonth.Name = "lastMonth";
 			lastMonth.Size = new Size(292, 23);
 			lastMonth.TabIndex = 9;
-			// 
+			//
 			// thisMonth
-			// 
+			//
 			thisMonth.BorderStyle = BorderStyle.FixedSingle;
 			thisMonth.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
 			thisMonth.Location = new Point(93, 149);
 			thisMonth.Name = "thisMonth";
 			thisMonth.Size = new Size(292, 23);
 			thisMonth.TabIndex = 11;
-			// 
+			//
 			// totalUsage
-			// 
+			//
 			totalUsage.BorderStyle = BorderStyle.FixedSingle;
 			totalUsage.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
 			totalUsage.Location = new Point(93, 178);
 			totalUsage.Name = "totalUsage";
 			totalUsage.Size = new Size(292, 23);
 			totalUsage.TabIndex = 13;
-			// 
+			//
 			// price
-			// 
+			//
 			price.BorderStyle = BorderStyle.FixedSingle;
 			price.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
 			price.Location = new Point(93, 225);
 			price.Name = "price";
 			price.Size = new Size(292, 23);
 			price.TabIndex = 15;
-			// 
+			//
 			// vat
-			// 
+			//
 			vat.BorderStyle = BorderStyle.FixedSingle;
 			vat.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
 			vat.Location = new Point(93, 254);
 			vat.Name = "vat";
 			vat.Size = new Size(292, 23);
 			vat.TabIndex = 17;
-			// 
+			//
 			// totalPrice
-			// 
+			//
 			totalPrice.BorderStyle = BorderStyle.FixedSingle;
 			totalPrice.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
 			totalPrice.Location = new Point(93, 283);
 			totalPrice.Name = "totalPrice";
 			totalPrice.Size = new Size(292, 23);
 			totalPrice.TabIndex = 18;
-			// 
+			//
 			// statusMenu
-			// 
+			//
 			statusMenu.Font = new Font("Segoe UI", 9.75F);
 			statusMenu.Items.AddRange(new ToolStripItem[] { idLabel });
 			statusMenu.Location = new Point(0, 338);
@@ -233,23 +233,23 @@ namespace Assignment2.gui {
 			statusMenu.Size = new Size(397, 22);
 			statusMenu.TabIndex = 1;
 			statusMenu.Text = "statusMenu";
-			// 
+			//
 			// idLabel
-			// 
+			//
 			idLabel.BackColor = SystemColors.ControlLightLight;
 			idLabel.Font = new Font("Segoe UI", 9.75F);
 			idLabel.Name = "idLabel";
 			idLabel.Size = new Size(50, 17);
 			idLabel.Text = "idLabel";
-			// 
+			//
 			// printMenuItem
-			// 
+			//
 			printMenuItem.Name = "printMenuItem";
 			printMenuItem.Size = new Size(32, 19);
 			printMenuItem.Text = "Print";
-			// 
+			//
 			// panel
-			// 
+			//
 			panel.BackColor = SystemColors.ControlLightLight;
 			panel.BorderStyle = BorderStyle.FixedSingle;
 			panel.Controls.Add(totalPrice);
@@ -276,9 +276,9 @@ namespace Assignment2.gui {
 			panel.Name = "panel";
 			panel.Size = new Size(397, 314);
 			panel.TabIndex = 20;
-			// 
+			//
 			// CustomerDetailsForm
-			// 
+			//
 			ClientSize = new Size(397, 360);
 			Controls.Add(panel);
 			Controls.Add(statusMenu);
