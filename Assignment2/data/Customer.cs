@@ -27,7 +27,7 @@ namespace Assignment2.data {
 
 		[DisplayName("Name")]
 		public string Name {
-			get { return _name; }
+			readonly get { return _name; }
 			set {
 				_name = value;
 			}
@@ -81,7 +81,7 @@ namespace Assignment2.data {
 		public readonly string ID => GenerageID();
 
 		private readonly string GenerageID() {
-			byte[] md5 = MD5.HashData(Encoding.UTF8.GetBytes(Name.ToLower()));
+			byte[] md5 = MD5.HashData(Encoding.UTF8.GetBytes($"{Name}{Type}{LastMonthUsage}{ThisMonthUsage}{AddTime}".ToLower()));
 			StringBuilder builder = new();
 			foreach (byte b in md5) {
 				builder.Append(b.ToString("x2"));

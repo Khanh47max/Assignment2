@@ -7,6 +7,7 @@ using System.Text.Json;
 namespace Assignment2.data {
 
 	internal class Database<T, S> where T : IData<T> where S : IMinimalData<T> {
+		private readonly JsonSerializerOptions options = new() { WriteIndented = true, IgnoreNullValues = true };
 		public readonly ObservableCollection<T> _items = [];
 
 		public event DataChanged OnDataChanged = delegate { };
@@ -50,7 +51,7 @@ namespace Assignment2.data {
 			FileStream writer = File.OpenWrite(filename);
 			try {
 				ObservableCollection<S> s = new(_items.Select(x => (S) x.GetMinimalData()));
-				JsonSerializer.Serialize(writer, s, new JsonSerializerOptions { WriteIndented = true });
+				JsonSerializer.Serialize(writer, s, options);
 				writer.Close();
 			} catch (Exception e) {
 				writer.Close();
