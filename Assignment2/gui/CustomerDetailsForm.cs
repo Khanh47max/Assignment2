@@ -5,6 +5,8 @@ namespace Assignment2.gui {
 
 	internal class CustomerDetailsForm : BaseForm {
 		private readonly Customer _customer;
+		private Label vat;
+		private Label vatLabel;
 		private readonly Form _parent;
 
 		public CustomerDetailsForm(Customer customer, Form parent) : base("User Details") {
@@ -25,7 +27,7 @@ namespace Assignment2.gui {
 			thisMonthLabel = new Label();
 			totalUsageLabel = new Label();
 			priceLabel = new Label();
-			vatLabel = new Label();
+			epfLabel = new Label();
 			totalPriceLabel = new Label();
 			name = new Label();
 			type = new Label();
@@ -34,12 +36,14 @@ namespace Assignment2.gui {
 			thisMonth = new Label();
 			totalUsage = new Label();
 			price = new Label();
-			vat = new Label();
+			epf = new Label();
 			totalPrice = new Label();
 			statusMenu = new StatusStrip();
 			idLabel = new ToolStripStatusLabel();
 			printMenuItem = new ToolStripMenuItem();
 			panel = new Panel();
+			vat = new Label();
+			vatLabel = new Label();
 			statusMenu.SuspendLayout();
 			panel.SuspendLayout();
 			SuspendLayout();
@@ -121,22 +125,22 @@ namespace Assignment2.gui {
 			priceLabel.Text = "Price";
 			priceLabel.TextAlign = ContentAlignment.MiddleLeft;
 			//
-			// vatLabel
+			// epfLabel
 			//
-			vatLabel.AutoSize = true;
-			vatLabel.Font = new Font("Segoe UI", 9.75F);
-			vatLabel.Location = new Point(11, 257);
-			vatLabel.Name = "vatLabel";
-			vatLabel.Size = new Size(29, 17);
-			vatLabel.TabIndex = 16;
-			vatLabel.Text = "VAT";
-			vatLabel.TextAlign = ContentAlignment.MiddleLeft;
+			epfLabel.AutoSize = true;
+			epfLabel.Font = new Font("Segoe UI", 9.75F);
+			epfLabel.Location = new Point(11, 257);
+			epfLabel.Name = "epfLabel";
+			epfLabel.Size = new Size(28, 17);
+			epfLabel.TabIndex = 16;
+			epfLabel.Text = "EPF";
+			epfLabel.TextAlign = ContentAlignment.MiddleLeft;
 			//
 			// totalPriceLabel
 			//
 			totalPriceLabel.AutoSize = true;
 			totalPriceLabel.Font = new Font("Segoe UI", 9.75F);
-			totalPriceLabel.Location = new Point(11, 286);
+			totalPriceLabel.Location = new Point(11, 315);
 			totalPriceLabel.Name = "totalPriceLabel";
 			totalPriceLabel.Size = new Size(36, 17);
 			totalPriceLabel.TabIndex = 19;
@@ -206,20 +210,20 @@ namespace Assignment2.gui {
 			price.Size = new Size(292, 23);
 			price.TabIndex = 15;
 			//
-			// vat
+			// epf
 			//
-			vat.BorderStyle = BorderStyle.FixedSingle;
-			vat.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-			vat.Location = new Point(93, 254);
-			vat.Name = "vat";
-			vat.Size = new Size(292, 23);
-			vat.TabIndex = 17;
+			epf.BorderStyle = BorderStyle.FixedSingle;
+			epf.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
+			epf.Location = new Point(93, 254);
+			epf.Name = "epf";
+			epf.Size = new Size(292, 23);
+			epf.TabIndex = 17;
 			//
 			// totalPrice
 			//
 			totalPrice.BorderStyle = BorderStyle.FixedSingle;
 			totalPrice.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-			totalPrice.Location = new Point(93, 283);
+			totalPrice.Location = new Point(93, 312);
 			totalPrice.Name = "totalPrice";
 			totalPrice.Size = new Size(292, 23);
 			totalPrice.TabIndex = 18;
@@ -228,7 +232,7 @@ namespace Assignment2.gui {
 			//
 			statusMenu.Font = new Font("Segoe UI", 9.75F);
 			statusMenu.Items.AddRange(new ToolStripItem[] { idLabel });
-			statusMenu.Location = new Point(0, 338);
+			statusMenu.Location = new Point(0, 369);
 			statusMenu.Name = "statusMenu";
 			statusMenu.Size = new Size(397, 22);
 			statusMenu.TabIndex = 1;
@@ -256,6 +260,8 @@ namespace Assignment2.gui {
 			panel.Controls.Add(totalPriceLabel);
 			panel.Controls.Add(vat);
 			panel.Controls.Add(vatLabel);
+			panel.Controls.Add(epf);
+			panel.Controls.Add(epfLabel);
 			panel.Controls.Add(price);
 			panel.Controls.Add(priceLabel);
 			panel.Controls.Add(totalUsage);
@@ -274,12 +280,32 @@ namespace Assignment2.gui {
 			panel.Font = new Font("Segoe UI", 9.75F);
 			panel.Location = new Point(0, 24);
 			panel.Name = "panel";
-			panel.Size = new Size(397, 314);
+			panel.Size = new Size(397, 345);
 			panel.TabIndex = 20;
+			//
+			// vat
+			//
+			vat.BorderStyle = BorderStyle.FixedSingle;
+			vat.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
+			vat.Location = new Point(93, 283);
+			vat.Name = "vat";
+			vat.Size = new Size(292, 23);
+			vat.TabIndex = 21;
+			//
+			// vatLabel
+			//
+			vatLabel.AutoSize = true;
+			vatLabel.Font = new Font("Segoe UI", 9.75F);
+			vatLabel.Location = new Point(11, 286);
+			vatLabel.Name = "vatLabel";
+			vatLabel.Size = new Size(29, 17);
+			vatLabel.TabIndex = 20;
+			vatLabel.Text = "VAT";
+			vatLabel.TextAlign = ContentAlignment.MiddleLeft;
 			//
 			// CustomerDetailsForm
 			//
-			ClientSize = new Size(397, 360);
+			ClientSize = new Size(397, 391);
 			Controls.Add(panel);
 			Controls.Add(statusMenu);
 			FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -304,6 +330,7 @@ namespace Assignment2.gui {
 			thisMonth.Text = $"{_customer.ThisMonthUsage:n1} m³";
 			totalUsage.Text = $"{_customer.TotalUsage:n1} m³";
 			price.Text = _customer.PriceWithoutVAT == -1 ? "N/A" : $"{_customer.PriceWithoutVAT:n1} VND";
+			epf.Text = $"{_customer.EPF:n1} VND";
 			vat.Text = $"{_customer.VAT:n1} VND";
 			totalPrice.Text = _customer.TotalPrice == -1 ? "N/A" : $"{_customer.TotalPrice:n1} VND";
 			idLabel.Text = "ID: " + _customer.ID;
@@ -353,7 +380,7 @@ namespace Assignment2.gui {
 		private Label lastMonth;
 		private Label thisMonth;
 		private Label totalUsage;
-		private Label vat;
+		private Label epf;
 		private Label price;
 		private Label totalPrice;
 
@@ -364,7 +391,7 @@ namespace Assignment2.gui {
 		private Label thisMonthLabel;
 		private Label totalUsageLabel;
 		private Label priceLabel;
-		private Label vatLabel;
+		private Label epfLabel;
 		private Label totalPriceLabel;
 
 		private StatusStrip statusMenu;

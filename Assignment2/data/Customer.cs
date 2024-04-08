@@ -68,6 +68,8 @@ namespace Assignment2.data {
 
 		public readonly double PriceWithoutVAT => _type.GetNoVATPrice(TotalUsage);
 
+		public readonly double EPF { get { return _type.GetEPF(PriceWithoutVAT); } }
+
 		public readonly double VAT { get { return _type.GetVAT(PriceWithoutVAT); } }
 
 		[DisplayName("Total price (VND)")]
@@ -101,7 +103,13 @@ namespace Assignment2.data {
 			info.AddValue("AddTime", _addTime);
 		}
 
-		public IMinimalData<Customer> GetMinimalData() => new MinimalCustomer() { name = _name, type = _type, lastMonthUsage = _lastMonthUsage, thisMonthUsage = _thisMonthUsage, addTime = _addTime };
+		public IMinimalData<Customer> GetMinimalData() => new MinimalCustomer() {
+			name = _name,
+			type = _type,
+			lastMonthUsage = _lastMonthUsage,
+			thisMonthUsage = _thisMonthUsage,
+			addTime = _addTime
+		};
 	}
 
 	public class MinimalCustomer : IMinimalData<Customer> {
@@ -176,8 +184,12 @@ namespace Assignment2.data {
 			return price;
 		}
 
-		public static double GetVAT(this CustomerType _, double NoVATPrice) {
+		public static double GetEPF(this CustomerType _, double NoVATPrice) {
 			return NoVATPrice == -1 ? 0 : NoVATPrice * 0.1;
+		}
+
+		public static double GetVAT(this CustomerType type, double NoVATPrice) {
+			return NoVATPrice == -1 ? 0 : (type.GetEPF(NoVATPrice) + NoVATPrice) * 0.1;
 		}
 
 		public static double GetPriceWithVAT(this CustomerType type, double waterUsage) {

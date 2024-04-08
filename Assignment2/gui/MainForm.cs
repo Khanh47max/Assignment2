@@ -3,7 +3,6 @@ using Assignment2.utils;
 
 namespace Assignment2.gui {
 
-	// TODO: Add functionality to the MainForm
 	internal class MainForm : BaseForm {
 		private readonly bool _forceExit = false;
 		private bool _updateMode = false;
@@ -249,8 +248,9 @@ namespace Assignment2.gui {
 		}
 
 		private void CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e) {
-			if (e.ColumnIndex == customer_list_view.Columns["PriceWithoutVAT"].Index || e.ColumnIndex == customer_list_view.Columns["VAT"].Index) {
-				customer_list_view.Columns[e.ColumnIndex].Visible = false;
+			List<string> ColumnsForHide = new() { "PriceWithoutVAT", "VAT", "EPF" };
+			foreach (string item in ColumnsForHide) {
+				customer_list_view.Columns[item].Visible = false;
 			}
 			if (e.ColumnIndex == customer_list_view.Columns["Type"].Index && e.Value is CustomerType _type) {
 				e.Value = _type.GetDescription();
@@ -268,6 +268,7 @@ namespace Assignment2.gui {
 			customer_list_view.DataSource = customer_list_view_source;
 			customer_list_view.Columns["PriceWithoutVAT"].Visible = false;
 			customer_list_view.Columns["VAT"].Visible = false;
+			customer_list_view.Columns["EPF"].Visible = false;
 		}
 
 		private void FillComboBox() {
